@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@EnableConfigurationProperties
+
 @SpringBootApplication
 @EnableAutoConfiguration
 public class JenkinsdemoApplication {
