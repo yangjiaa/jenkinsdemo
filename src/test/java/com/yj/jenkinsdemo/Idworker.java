@@ -35,4 +35,5 @@ public class Idworker {
         System.out.println("过滤重复后订单数："+filterOrderNos.size());
         System.out.println("重复订单数："+(orderNos.size()-filterOrderNos.size()));
     }
+    // TODO 雪花算法优化
 }
