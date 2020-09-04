@@ -1,0 +1,13 @@
+package ${package_name}.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import ${package_name}.entity.${model};
+
+/**
+* ${model}Repository接口
+* Created by yangjia on ${ctime}.
+*/
+
+public interface ${model}Repository extends JpaRepository<${model}, String> {
+
+}

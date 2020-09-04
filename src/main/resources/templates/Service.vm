@@ -1,0 +1,13 @@
+package ${package_name}.service;
+
+import com.yj.jenkinsdemo.base.BaseService;
+import ${package_name}.entity.${model};
+import ${package_name}.entity.${model}Example;
+
+/**
+* ${model}Service接口
+* Created by yangjia on ${ctime}.
+*/
+public interface ${model}Service extends BaseService<${model}, ${model}Example,String> {
+
+}

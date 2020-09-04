@@ -1,0 +1,35 @@
+package ${package_name}.service.impl;
+
+import com.yj.jenkinsdemo.base.BaseServiceImpl;
+import ${package_name}.repository.${model}Repository;
+import ${package_name}.mapper.${model}Mapper;
+import ${package_name}.entity.${model};
+import ${package_name}.entity.${model}Example;
+import ${package_name}.service.${model}Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+/**
+* ${model}Service实现
+* Created by yangjia on ${ctime}.
+*/
+@Service
+@Transactional
+public class ${model}ServiceImpl extends BaseServiceImpl<${model}Repository,${model}Mapper, ${model}, ${model}Example,String> implements ${model}Service {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(${model}ServiceImpl.class);
+
+    @Autowired
+    ${model}Mapper ${mapper}Mapper;
+    @Autowired
+    ${model}Repository ${mapper}Repository;
+
+    @Resource(name = "${mapper}Mapper")
+    public void set${model}Mapper(${model}Mapper ${mapper}Mapper) {
+        super.setMapper(${mapper}Mapper);
+    }
+}

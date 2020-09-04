@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.BlogMapper">
+	<update id="updateBlog" parameterType="blog">
+		update blog
+		<set>
+			<if test="#{title}!=null">
+				title=#{title}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<select id="selectBlog3" parameterType="hashmap" resultType="blog">
+		select * from blog where id = #{id} and
+		author=#{author,javaType=string}
+	</select>
+
+	<!-- <cache readOnly="false"  eviction="FIFO" blocking="true"/> -->
+	<!-- <cache 
+		blocking="true" 
+		eviction="FIFO" 
+		flushInterval="60000"
+		readOnly="true" 
+		size="512" 
+		type="org.apache.ibatis.cache.impl.PerpetualCache">
+	</cache> -->
+	<cache 
+		eviction="FIFO" 
+		readOnly="true" 
+		size="512">
+	</cache>
+
+	<resultMap id="blogResultMap2" type="string">
+		<result property="title" column="title" />
+	</resultMap>
+	<resultMap id="blogResultMap" type="blog" autoMapping="true">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="title" column="title" javaType="string"
+			jdbcType="VARCHAR" />
+		<result property="content" column="content" javaType="string"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="selectBlogMap" parameterType="hashmap" resultType="blog">
+		select id,title,author from blog where id = #{id} and author=#{author}
+	</select>
+	<select id="selectBlogMap2" parameterType="hashmap" resultType="blogEnum">
+		select id,title,author from blog where id = #{id} and author=#{author}
+	</select>
+	<!--<select id="selectBlogMap" parameterType="hashmap" resultMap="blogResultMap"> -->
+	<!-- <select id="selectBlogMap" parameterType="hashmap" resultType="Map"> -->
+
+	<select id="selectBlog" parameterType="long" resultType="com.mybatis.vo.Blog" flushCache="true">
+		select *
+		from blog where id = #{id}
+	</select>
+
+
+	<select id="selectBlog4" parameterType="long" resultType="blog">
+		select
+		*
+		from blog where id = #{id}
+	</select>
+
+	<select id="selectBlogs" parameterType="string" resultType="blog">
+		select * from blog where author = #{author}
+	</select>
+
+	<select id="selectBlogsArray" parameterType="string" resultType="blog">
+		select * from blog where author = #{author}
+	</select>
+
+	<select id="selectBlogsByHandler" parameterType="string"
+		resultType="blog">
+		select * from blog where author = #{author}
+	</select>
+
+	<insert id="insertBlog" parameterType="blog">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+			SELECT
+			LAST_INSERT_ID()
+		</selectKey>
+		insert into blog (title,author,content) values
+		(#{title},#{author},#{content})
+	</insert>
+
+	<!-- <select id="selectParent" parameterType="long" resultType="blog"> select 
+		* from blog where id = #{id} </select> -->
+</mapper>
